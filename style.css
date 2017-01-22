@@ -1,3 +1,4 @@
+/*NAV STUFF*/
 .nav-side-menu {
   overflow: auto;
   font-family: verdana;
@@ -6,9 +7,10 @@
   background-color: #2e353d;
   position: fixed;
   top: 0px;
-  width: 300px;
+  width: 20%;
   height: 100%;
   color: #e1ffff;
+  float: left;
 }
 
 .nav-side-menu ul,
@@ -42,6 +44,50 @@
 .nav-side-menu li a {
   text-decoration: none;
   color: #e1ffff;
+}
+
+/*MAIN PIPELINE VIEW*/
+.canvas{
+    float: right;
+    background-color: #00ff00;
+    width: 80%;
+}
+
+.top-bar {
+    border-bottom: solid;
+}
+
+.topbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #869499;
+}
+
+.topbar-elem{
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#logo {
+  font-size: 18px;
+  border-right: thick double #15181A;
+}
+
+#pipename {
+  width: 500px;
+}
+
+#pub-button {
+  width: 100px;
+}
+
+#run-button {
+  width: 100px;
 }
 
 body {
