@@ -78,8 +78,12 @@
   border-right: thick double #15181A;
 }
 
+#textbox {
+  width: 40%;
+}
+
 #pipename {
-  width: 500px;
+  width: 100%;
 }
 
 #pub-button {

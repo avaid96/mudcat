@@ -4,6 +4,7 @@
 <head>
   <title>MuDCAT</title>
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="xml.js"></script>
 </head>
 
 <body>
@@ -42,13 +43,13 @@
             <ul class="topbar">
                 <li class="topbar-elem" id="logo">MuDCAT</li>
                 <li class="topbar-elem">Pipeline name: </li>
-                <li class="topbar-elem">
+                <li class="topbar-elem" id="textbox">
                     <!--name of pipeline-->
                     <input type="text" name="pipe-name" id="pipename">
                 <li>
                 <li class="topbar-elem">
                     <input type="submit" value="publish" id="pub-button">
-                    <input type="submit" value="run" id="run-button">
+                    <input type="submit" value="run" id="run-button" onclick="makePipe()">
                 </li>
             </ul>
         </div>
