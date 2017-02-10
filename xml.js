@@ -9,10 +9,12 @@ function getComponents() {
     var sampleKeys = {};
     sampleKeys["option1"] = 2.0
     var sampleComponent = [sampleName, sampleKeys];
+    var sampleName = "sampleName2";
+    var sampleComponent2 = [sampleName, sampleKeys];
     // ---------------
     // Adding component with settings to components array
     components.push(sampleComponent);
-    components.push(sampleComponent);
+    components.push(sampleComponent2);
 
     // returning the filename and the formed component list where each component is [cName, cKeys]
     return components
@@ -64,7 +66,7 @@ function makePipe() {
     var components = getComponents();
     // console.log(fName);
     // Printing components list
-    // arrayLength = components.length;
+    // var arrayLength = components.length;
     // for (var i = 0; i < arrayLength; i++) {
     //     console.log(i+" -> "+components[i]);
     // }
@@ -79,8 +81,12 @@ function makePipe() {
 
     // Sensor creation/initialization block
     //Loop through components 
-        var sensor = createXMLElem("sensor", {"create": "CameraReader", "path": "camera.avi"});
+    arrayLength = components.length;
+    for (var i = 0; i < arrayLength; i++) {
+        var current = (components[i]);
+        var sensor = createXMLElem("sensor", {"create": current[0], "path": "camera.avi"});
         pipe.documentElement.appendChild(sensor);
+    }
 
     // Visualization block
     var visualize = createXMLElem("consumer", {"create": "VideoPainter:plot", "title": "camera"});
@@ -91,5 +97,4 @@ function makePipe() {
     pipe.documentElement.appendChild(visualize);
 
     console.log(pipe)
-
 }
