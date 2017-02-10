@@ -5,7 +5,7 @@
   <title>MuDCAT</title>
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="xml.js"></script>
-  <script type="text/javascript" src="scraper.js"></script>
+  <script src="jquery-3.1.1.min.js"></script>
 </head>
 
 <body>
@@ -49,7 +49,7 @@
                     <input type="text" name="pipe-name" id="pipename">
                 <li>
                 <li class="topbar-elem">
-                    <input type="submit" value="loadXML" id="pub-button" onclick="main()">
+                    <input type="submit" value="loadXML" id="pub-button" onclick="getJsonMap()">
                     <input type="submit" value="run" id="run-button" onclick="makePipe()">
                 </li>
             </ul>

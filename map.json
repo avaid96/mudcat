@@ -1,0 +1,44 @@
+{
+    "camera": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicamera\"/>\n"
+        ], 
+        [
+            "<sensor create=\"CameraReader\" path=\"camera.avi\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"camera\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "audio": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor blockInSamples=\"512\" create=\"WavReader\" path=\"audio.wav\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "mouse": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor blockInSamples=\"5\" create=\"FileReader\" cutoffInSamples=\"0\" offsetInSamples=\"0\" path=\"cursor\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"cursor\" sync=\"0\" watch=\"0\"/>\n\t\t\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "microsoftkinect": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssimodel\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimicrosoftkinect\"/>\n", 
+            "<load name=\"ssicamera\"/>\n"
+        ], 
+        [
+            "<sensor create=\"MicrosoftKinect\" nearTrackingMode=\"true\" seatedSkeletonMode=\"false\" showBodyTracking=\"false\" showFaceTracking=\"false\" simpleFaceTracking=\"false\" trackNearestPerson=\"true\">\n\t\n\t\t\n\t<output channel=\"rgb\" pin=\"rgb\"/>\n\t\n\t\t\n\t<output channel=\"depthr\" pin=\"depth\"/>\n\t\n\t\t\n\t<output channel=\"au\" pin=\"au\"/>\n\t\n\t\t\n\t<output channel=\"head\" pin=\"head\"/>\n\t\n\t\t\n\t<output channel=\"skeleton\" pin=\"skel\"/>\n\t\n\t\t\n\t<output channel=\"face\" pin=\"face\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ]
+}

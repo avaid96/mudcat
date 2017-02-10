@@ -16,13 +16,11 @@ def parseXML(file):
         for load in reg.getElementsByTagName('load'):
             # print load.getAttribute("name")
             register.append(load.toprettyxml())
-    # print register
 
     #SENSOR
     sensor = []
     for sens in currentDom.getElementsByTagName('sensor'):
         sensor.append(sens.toprettyxml())
-    # print sensor
 
     #TODO @avaid96: Figure out what happens with consumer and decoration
     
@@ -33,7 +31,12 @@ def parseAll(directory):
     map = {} 
     for file in files:
         register, sensor = parseXML(file)
-        map[file] = [register, sensor]
+        fileName = file[:-9]
+        if fileName.endswith("_read"):
+            fileName = fileName[:-5]
+        if fileName.endswith("_write"):
+            fileName = fileName[:-6]
+        map[fileName] = [register, sensor]
     return map
 
 def main():

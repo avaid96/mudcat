@@ -61,6 +61,9 @@ function createXMLElem(tagName, options, nestable) {
 
 // A function that generates XML from various inputs got from the UI
 function makePipe() {
+    // Get map
+    map = getJsonMap();
+    console.log(map);
     // Get filename
     var fName = document.getElementById("pipename").value; 
     var components = getComponents();
@@ -98,3 +101,16 @@ function makePipe() {
 
     console.log(pipe)
 }
+
+function Get(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;          
+}
+
+function getJsonMap() {
+    $.getJSON("https://raw.githubusercontent.com/avaid96/mudcat/master/map.json"); // figure out how to get rid of this
+    return JSON.parse(Get("https://raw.githubusercontent.com/avaid96/mudcat/master/map.json"));
+}
+
