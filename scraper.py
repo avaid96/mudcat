@@ -1,6 +1,8 @@
 import os
+import stat
 import xml.dom.minidom as xml
 import pprint
+import json
 
 def getAllXMLFileNames(dirName):
     return [i for i in os.listdir(dirName) if i.endswith('pipeline')]
@@ -37,7 +39,9 @@ def parseAll(directory):
 def main():
     dir = os.getcwd()
     map = parseAll(dir)
-    pprint.pprint(map.keys())
+    with open('map.json', 'w') as jsonFile:
+        mapDump = json.dumps(map, indent=4, ensure_ascii=False)
+        jsonFile.write(mapDump)
     
 if __name__=="__main__":
     main()
