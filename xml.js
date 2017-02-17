@@ -101,9 +101,11 @@ function makePipe() {
         register.appendChild(comment);
         for (var j = 0; j < arrayLen; j++) {
             currLoadStr = (currentCompLoads[j]);
+            // ------- PARSE STRING TO DOM ELEMENT- "standard" method
             var d = document.createElement('div');
             d.innerHTML = currLoadStr;
             currLoad = (d.firstChild);
+            // --------
             register.appendChild(currLoad);
         }
     }
@@ -114,9 +116,13 @@ function makePipe() {
     //Loop through components 
     arrayLength = components.length;
     for (var i = 0; i < arrayLength; i++) {
-        var current = (components[i]);
-        var sensor = createXMLElem("sensor", {"create": current[0], "path": "camera.avi"});
-        pipe.documentElement.appendChild(sensor);
+        var currentCompName = (components[i][0]);
+        var currentCompProps = (map[currentCompName]);
+        var currentCompSense = currentCompProps[1];
+        document.createElement('div');
+        d.innerHTML = currentCompSense;
+        currSense = d.firstChild
+        pipe.documentElement.appendChild(currSense);
     }
 
     var comment = document.createComment("BEGIN VISUALIZATION BLOCK");
