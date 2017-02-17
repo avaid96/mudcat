@@ -5,11 +5,11 @@ function getComponents() {
     // USING SAMPLE FOR NOW
     // ---------------
     // CREATING SAMPLE
-    var sampleName = "sampleName";
+    var sampleName = "camera";
     var sampleKeys = {};
     sampleKeys["option1"] = 2.0
     var sampleComponent = [sampleName, sampleKeys];
-    var sampleName = "sampleName2";
+    var sampleName = "audio";
     var sampleComponent2 = [sampleName, sampleKeys];
     // ---------------
     // Adding component with settings to components array
@@ -48,14 +48,21 @@ function sampleMakeXML() {
     console.log(doc);
 }
 
-function createXMLElem(tagName, options, nestable) {
-    // TODO: Implement elements of type <load name="ssigraphic" />
+function createXMLElem(tagName, options, nestable=true) {
     // Create element
-    var tag = document.createElementNS('tagId', tagName);
-    // Set parameters in tag
-    Object.keys(options).forEach(function(key) {
-        tag.setAttribute(key, options[key]);
-    })
+    var tag;
+    if(nestable) {
+        tag = document.createElementNS('tagId', tagName);
+        
+        // Set parameters in tag
+        Object.keys(options).forEach(function(key) {
+            tag.setAttribute(key, options[key]);
+        })
+    }
+    else {
+        // TODO: Implement elements of type <load name="ssigraphic" />
+        tag = document.createElement(tagName);
+    }
     return tag
 }
 
@@ -78,10 +85,31 @@ function makePipe() {
     var pipe = document.implementation.createDocument('', 'pipeline');
 
     // Register block
+    var comment = document.createComment("BEGIN REGISTER BLOCK");
+    pipe.documentElement.appendChild(comment);
     var register = createXMLElem("register", {});
     pipe.documentElement.appendChild(register);
     // Loop through components and register them
+    arrayLength = components.length;
+    for (var i = 0; i < arrayLength; i++) {
+        var currentCompName = (components[i][0]);
+        var currentCompProps = (map[currentCompName]);
+        var currentCompLoads = currentCompProps[0];
+        // initialize loads
+        arrayLen = currentCompLoads.length;
+        var comment = document.createComment(currentCompName);
+        register.appendChild(comment);
+        for (var j = 0; j < arrayLen; j++) {
+            currLoadStr = (currentCompLoads[j]);
+            var d = document.createElement('div');
+            d.innerHTML = currLoadStr;
+            currLoad = (d.firstChild);
+            register.appendChild(currLoad);
+        }
+    }
 
+    var comment = document.createComment("BEGIN SENSOR BLOCK");
+    pipe.documentElement.appendChild(comment);
     // Sensor creation/initialization block
     //Loop through components 
     arrayLength = components.length;
@@ -91,6 +119,8 @@ function makePipe() {
         pipe.documentElement.appendChild(sensor);
     }
 
+    var comment = document.createComment("BEGIN VISUALIZATION BLOCK");
+    pipe.documentElement.appendChild(comment);
     // Visualization block
     var visualize = createXMLElem("consumer", {"create": "VideoPainter:plot", "title": "camera"});
     pipe.documentElement.appendChild(visualize);
