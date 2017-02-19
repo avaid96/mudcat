@@ -5,7 +5,13 @@ import pprint
 import json
 
 def getAllXMLFileNames(dirName):
-    return [i for i in os.listdir(dirName) if i.endswith('pipeline')]
+    pipelines = []
+    for path, subdirs, files in os.walk(dirName):
+        for name in files:
+            fPathName = os.path.join(path, name) 
+            if fPathName.endswith('pipeline'):
+                pipelines.append(fPathName)
+    return pipelines
 
 def parseXML(file):
     currentDom = xml.parse(file)
@@ -32,6 +38,7 @@ def parseAll(directory):
     for file in files:
         register, sensor = parseXML(file)
         fileName = file[:-9]
+        fileName = os.path.basename(fileName)
         if fileName.endswith("_read"):
             fileName = fileName[:-5]
         if fileName.endswith("_write"):

@@ -85,6 +85,7 @@ function makePipe() {
     var pipe = document.implementation.createDocument('', 'pipeline');
 
     // Register block
+    // TODO: FLAGS
     var comment = document.createComment("BEGIN REGISTER BLOCK");
     pipe.documentElement.appendChild(comment);
     var register = createXMLElem("register", {});
@@ -113,7 +114,7 @@ function makePipe() {
     var comment = document.createComment("BEGIN SENSOR BLOCK");
     pipe.documentElement.appendChild(comment);
     // Sensor creation/initialization block
-    //Loop through components 
+    // TODO: FLAGS
     arrayLength = components.length;
     for (var i = 0; i < arrayLength; i++) {
         var currentCompName = (components[i][0]);
