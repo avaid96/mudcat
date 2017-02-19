@@ -1,32 +1,861 @@
 {
-    "camera": [
+    "brownnoise": [
         [
             "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssidspfilters\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"brownnoise.wav\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "bvp": [
+        [
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssibiosig\"/>\n"
+        ], 
+        [
+            "<sensor blockInSamples=\"1\" create=\"FileReader\" path=\"bvp\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"bvp\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_merge": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "noisegate": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssilibsoxfilter\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"../build/test/testfiles/79_nlb-20dB.wav\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "xmpp": [
+        [
+            "<load name=\"ssixmpp\"/>\n"
+        ], 
+        []
+    ], 
+    "compand": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssilibsoxfilter\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"../build/test/testfiles/79_nlb-20dB.wav\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "eyesig": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssieyesig\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" scale=\"false\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "winsensors": [
+        [
+            "<load name=\"ssiwinsensors\"/>\n"
+        ], 
+        []
+    ], 
+    "generic_serial_video": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n", 
+            "<load name=\"ssigeneric_serial\"/>\n"
+        ], 
+        [
+            "<sensor baud=\"115200\" create=\"GenericSerial\" dim=\"4\" port=\"17\" separator=\";\" sr=\"4\">\n\t\t\t\n\t\t\n\t<output channel=\"serialrawdata\" pin=\"pin_serial_raw_data\" size=\"10.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"Camera\" flip=\"true\" fps=\"5.0\" option=\"camera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"camera\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "chebyshevI": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssidspfilters\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "websocket_mouse_floats": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssiwebsocket\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"pin_cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "skeleton": [
+        [
+            "<load name=\"ssimicrosoftkinect2\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiskeleton\"/>\n"
+        ], 
+        [
+            "<sensor create=\"MicrosoftKinect2\" showBodyTracking=\"true\" showFaceTracking=\"true\" sr=\"15.0\" trackNearestPersons=\"6\">\n\t\n\t\t\n\t<output channel=\"skeleton\" pin=\"skel\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "opennikinect": [
+        [
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiopennikinect\"/>\n"
+        ], 
+        [
+            "<sensor create=\"OpenNIKinect\" project=\"False\">\n\t\n\t\t\n\t<output channel=\"rgb\" pin=\"rgb\"/>\n\t\n\t\t\n\t<output channel=\"scene\" pin=\"scene\"/>\n\t\n\t\t\n\t<output channel=\"depth\" pin=\"depth\"/>\n\t\n\t\t\n\t<output channel=\"skeleton\" pin=\"skeleton\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "event_to_stream": [
+        [
+            "<load name=\"ssiframe\"/>\n", 
+            "<load name=\"ssievent\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssibiosig\"/>\n"
+        ], 
+        [
+            "<sensor create=\"FileReader\" loop=\"False\" path=\"event_to_stream\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"bvp\" sync=\"0\" watch=\"0\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"EventToStream\" eventValue=\"number_of_events\" useWindow=\"True\">\n\t\n\t\t\n\t<listen address=\"@bvp_tuple\"/>\n\t\n\t\t\n\t<output channel=\"event output\" pin=\"event\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"EventToStream\" eventValue=\"amplitude\" useWindow=\"False\">\n\t\n\t\t\n\t<listen address=\"@bvp_tuple\"/>\n\t\n\t\t\n\t<output channel=\"event output\" pin=\"event_amp\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"EventToStream\" eventValue=\"2\" useWindow=\"False\">\n\t\n\t\t\n\t<listen address=\"@bvp_tuple\"/>\n\t\n\t\t\n\t<output channel=\"event output\" pin=\"event_amp2\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "websocket_mouse_stream": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssiwebsocket\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" event=\"true\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"pin_cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_integral": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_derivative": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "brownnoise_stop": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssilibsoxfilter\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"brownnoise.wav\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "dance_mat": [
+        [
+            "<load name=\"ssirawinput\"/>\n", 
+            "<load name=\"ssieventinterpreter\"/>\n"
+        ], 
+        []
+    ], 
+    "smile": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssimodel\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimicrosoftkinect\"/>\n", 
             "<load name=\"ssicamera\"/>\n"
         ], 
         [
-            "<sensor create=\"CameraReader\" path=\"camera.avi\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"camera\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+            "<sensor create=\"MicrosoftKinect\" nearTrackingMode=\"true\" seatedSkeletonMode=\"false\" showBodyTracking=\"false\" showFaceTracking=\"false\" simpleFaceTracking=\"false\" trackNearestPerson=\"true\">\n\t\n\t\t\n\t<output channel=\"rgb\" pin=\"rgb\"/>\n\t\n\t\t\n\t<output channel=\"au\" pin=\"au\"/>\n\t\n\t\t\n\t<output channel=\"skeleton\" pin=\"skel\"/>\n\t\n\t\t\n\t<output channel=\"face\" pin=\"face\"/>\n\t\n\t\n</sensor>\n"
         ]
     ], 
-    "audio": [
+    "signal_cast": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "gsr_response_event": [
+        [
+            "<load name=\"ssiframe\"/>\n", 
+            "<load name=\"ssievent\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiehealth\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssibiosig\"/>\n"
+        ], 
+        [
+            "<sensor create=\"FileReader\" loop=\"False\" path=\"gsr_lowpass\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"gsr\" sync=\"0\" watch=\"0\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"GSREventListener\" sr=\"1\" statisticalFunction=\"0\" window=\"0\">\n\t\n\t\t\n\t<output channel=\"rising time\" pin=\"rising_time\"/>\n\t\n\t\t\n\t<output channel=\"power\" pin=\"pow\"/>\n\t\n\t\t\n\t<output channel=\"numer of responses\" pin=\"nr_resp\"/>\n\t\n\t\t\n\t<output channel=\"energy\" pin=\"energy\"/>\n\t\n\t\t\n\t<output channel=\"amplitude\" pin=\"amp\"/>\n\t\n\t\t\n\t<listen address=\"@gsr_tuple\"/>\n\t\t\n\t\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "noisereduction": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssilibsoxfilter\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"../build/test/testfiles/79_nlb-20dB.wav\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "fubi": [
+        [
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssimicrosoftkinect\"/>\n", 
+            "<load name=\"ssiskeleton\"/>\n", 
+            "<load name=\"ssifubi\"/>\n"
+        ], 
+        [
+            "<sensor create=\"MicrosoftKinect\" nearTrackingMode=\"true\" seatedSkeletonMode=\"false\" showBodyTracking=\"true\" showFaceTracking=\"true\" simpleFaceTracking=\"true\" trackNearestPerson=\"true\">\n\t\n\t\t\n\t<output channel=\"rgb\" pin=\"rgb\"/>\n\t\t\t\n\t\t\n\t<output channel=\"head\" pin=\"head\"/>\n\t\t\t\n\t\t\n\t<output channel=\"face3d\" pin=\"face3d\"/>\n\t\t\t\n\t\t\n\t<output channel=\"skeleton\" pin=\"skel\"/>\n\t\t\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "eventinterpreter": [
+        [
+            "<load name=\"ssieventinterpreter\"/>\n"
+        ], 
+        []
+    ], 
+    "sensingtex": [
+        [
+            "<load name=\"ssisensingtex\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor cols=\"8\" create=\"SensingTex\" port=\"11\" rows=\"8\" scale=\"true\" sr=\"20.0\">\n\t\n\t\t\n\t<output channel=\"pressurematrix\" pin=\"press_raw\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "socket_udp_reader": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"SocketReader\" format=\"0\" port=\"7777\" sbyte=\"4\" sdim=\"2\" ssr=\"50.0\" stype=\"9\" type=\"0\">\n\t\t\t\n\t\t\n\t<output channel=\"socket\" pin=\"cursor1\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"SocketReader\" delim=\";\" format=\"1\" port=\"8888\" sbyte=\"4\" sdim=\"2\" ssr=\"50.0\" stype=\"9\" type=\"0\">\n\t\t\t\n\t\t\n\t<output channel=\"socket\" pin=\"cursor2\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"SocketReader\" format=\"2\" port=\"9999\" sbyte=\"4\" sdim=\"2\" ssr=\"50.0\" stype=\"9\" type=\"0\">\n\t\t\t\n\t\t\n\t<output channel=\"socket\" pin=\"cursor3\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_selector": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "microsoftkinect2": [
+        [
+            "<load name=\"microsoftkinect2\"/>\n", 
+            "<load name=\"graphic\"/>\n", 
+            "<load name=\"ioput\"/>\n"
+        ], 
+        [
+            "<sensor create=\"MicrosoftKinect2\" showBodyTracking=\"true\" showFaceTracking=\"true\" sr=\"15.0\" trackNearestPersons=\"6\">\n\t\n\t\t\n\t<output channel=\"rgb\" pin=\"rgb\"/>\n\t\n\t\t\n\t<output channel=\"depth\" pin=\"depth\"/>\n\t\n\t\t\n\t<output channel=\"ir\" pin=\"ir\"/>\n\t\n\t\t\n\t<output channel=\"au\" pin=\"au\"/>\n\t\n\t\t\n\t<output channel=\"head\" pin=\"head\"/>\n\t\n\t\t\n\t<output channel=\"skeleton\" pin=\"skel\"/>\n\t\n\t\t\n\t<output channel=\"face\" pin=\"face\"/>\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_multiply": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssicontrol\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\">\n\t\t\n\t\t\t\n\t\t<transformer create=\"Selector\" indices=\"0,1\"/>\n\t\t\n\t\t\n\t</output>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "ffmpeg_stream_client": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n"
+        ], 
+        [
+            "<sensor create=\"FFMPEGReader\" fps=\"25.0\" height=\"240\" stream=\"true\" url=\"udp://127.0.0.1:2222\" width=\"320\">\n\t\t\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor asr=\"48000.0\" create=\"FFMPEGReader\" stream=\"true\" url=\"udp://127.0.0.1:3333\">\n\t\t\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "ffmpeg_file": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor channel=\"3\" create=\"Camera\" depth=\"8\" flip=\"true\" fps=\"25.0\" height=\"480\" option=\"camera\" width=\"640\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "server": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"5.0\">\n\t\t\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "gazetracker_record": [
+        [
+            "<load name=\"ssiframe\"/>\n", 
+            "<load name=\"ssievent\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssigazetracker\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" flip=\"true\" option=\"eyecamera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"eyevideo\" size=\"1.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"Camera\" flip=\"true\" option=\"scenecamera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"scenevideo\" size=\"1.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "whitenoise": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssidspfilters\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"whitenoise.wav\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "classifier": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimodel\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "camera_read_raw": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor blockInSamples=\"1\" create=\"FileReader\" cutoffInSamples=\"0\" offsetInSamples=\"0\" path=\"camera\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"camera\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "brownnoise_band": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssilibsoxfilter\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"brownnoise.wav\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "websocket_string": [
+        [
+            "<load name=\"ssiwebsocket\"/>\n"
+        ], 
+        []
+    ], 
+    "websocket_empty": [
+        [
+            "<load name=\"ssiwebsocket\"/>\n"
+        ], 
+        []
+    ], 
+    "socket_tcp_reader": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"SocketReader\" format=\"0\" host=\"localhost\" port=\"7777\" sbyte=\"4\" sdim=\"2\" ssr=\"50.0\" stype=\"9\" type=\"1\">\n\t\t\t\n\t\t\n\t<output channel=\"socket\" pin=\"cursor1\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"SocketReader\" delim=\";\" format=\"1\" host=\"localhost\" port=\"8888\" sbyte=\"4\" sdim=\"2\" ssr=\"50.0\" stype=\"9\" type=\"1\">\n\t\t\t\n\t\t\n\t<output channel=\"socket\" pin=\"cursor2\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"SocketReader\" format=\"2\" host=\"localhost\" port=\"9999\" sbyte=\"4\" sdim=\"2\" ssr=\"50.0\" stype=\"9\" type=\"1\">\n\t\t\t\n\t\t\n\t<output channel=\"socket\" pin=\"cursor3\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "camera_raw": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" option=\"camera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"camera\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "artkplus": [
+        [
+            "<load name=\"ssiartkplus\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" option=\"camera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "socket_video_server": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor channel=\"3\" create=\"Camera\" depth=\"8\" fps=\"25.0\" height=\"480\" option=\"camera\" width=\"640\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"camera\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_gate": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssicontrol\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\">\n\t\t\n\t\t\t\n\t\t<transformer create=\"Selector\" indices=\"1\"/>\n\t\t\n\t\t\n\t</output>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "event": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "gazetracker": [
+        [
+            "<load name=\"ssiframe\"/>\n", 
+            "<load name=\"ssievent\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssigazetracker\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" flip=\"true\" option=\"eyecamera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"eyevideo\" size=\"1.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"Camera\" flip=\"true\" option=\"scenecamera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"scenevideo\" size=\"1.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "event_xmlsender": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "socket_udp_event_sender": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\" sr=\"50.0\">\n\t\t\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_chain": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"50.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "ecg": [
+        [
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssibiosig\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.2\" create=\"FileReader\" path=\"ecg\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"ecg\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_functionals": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_energy": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "screen": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiimage\"/>\n"
+        ], 
+        [
+            "<sensor create=\"CameraScreen\" fps=\"25.0\" full=\"true\" resize=\"true\" resize_height=\"480\" resize_width=\"640\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video_flip\" size=\"2.0s\"/>\n\t\t\t\t\t\t\n\t\n</sensor>\n", 
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "openface": [
+        [
+            "<load name=\"camera\"/>\n", 
+            "<load name=\"graphic\"/>\n", 
+            "<load name=\"openface\"/>\n", 
+            "<load name=\"ioput\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" flip=\"true\" option=\"camera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "stream_sender": [
         [
             "<load name=\"ssigraphic\"/>\n", 
             "<load name=\"ssiaudio\"/>\n", 
-            "<load name=\"ssiioput\"/>\n"
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n", 
+            "<load name=\"ssiimage\"/>\n"
+        ], 
+        [
+            "<sensor channel=\"3\" create=\"Camera\" depth=\"8\" flip=\"true\" fps=\"25.0\" height=\"240\" option=\"camera\" width=\"320\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor blockInSamples=\"0.01\" create=\"Audio\" option=\"audio\" scale=\"true\" sr=\"48000\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "audio_play": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
         ], 
         [
             "<sensor blockInSamples=\"512\" create=\"WavReader\" path=\"audio.wav\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
         ]
     ], 
-    "mouse": [
+    "stream_receiver": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n"
+        ], 
+        [
+            "<sensor create=\"FFMPEGReader\" fps=\"25.0\" height=\"240\" stream=\"true\" url=\"udp://127.0.0.1:1111\" width=\"320\">\n\t\t\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor asr=\"48000.0\" create=\"FFMPEGReader\" stream=\"true\" url=\"udp://127.0.0.1:2222\">\n\t\t\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "socket_tcp_sender": [
         [
             "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
             "<load name=\"ssigraphic\"/>\n", 
             "<load name=\"ssisignal\"/>\n"
         ], 
         [
-            "<sensor blockInSamples=\"5\" create=\"FileReader\" cutoffInSamples=\"0\" offsetInSamples=\"0\" path=\"cursor\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"cursor\" sync=\"0\" watch=\"0\"/>\n\t\t\t\n\t\n</sensor>\n"
+            "<sensor create=\"Mouse\" mask=\"1\" sr=\"50.0\">\n\t\t\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\n</sensor>\n"
         ]
+    ], 
+    "iom": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiiom\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Iom\" id=\"0\">\n\t\n\t\t\n\t<output channel=\"bvp\" pin=\"bvp\"/>\n\t\n\t\t\n\t<output channel=\"sc\" pin=\"sc\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "control_slider": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssicontrol\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\">\n\t\t\n\t\t\t\n\t\t<transformer create=\"Selector\" indices=\"1\"/>\n\t\t\n\t\t\n\t</output>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "generic_serial": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigeneric_serial\"/>\n"
+        ], 
+        [
+            "<sensor baud=\"115200\" create=\"GenericSerial\" dim=\"4\" port=\"17\" separator=\";\" sr=\"4\">\n\t\t\t\n\t\t\n\t<output channel=\"serialrawdata\" pin=\"pin_serial_raw_data\" size=\"10.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "chebyshevII": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssidspfilters\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "vectorfusion": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssivectorfusion\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" flip=\"true\" mask=\"1\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_mvgpeakgate": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\" scale=\"true\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "opensmile": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiopensmilewrapper\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "xmpp_subscribe": [
+        [
+            "<load name=\"ssixmpp\"/>\n"
+        ], 
+        []
+    ], 
+    "laughdetect": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssilibsoxfilter\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssimodel\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiopensmile\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"../build/test/testfiles/79_nlb-20dB.wav\" scale=\"true\">\n\t\n\t\n\t<!--<sensor create=\"WavReader\" path=\"../build/test/testfiles/79_norm_cut.wav\" block=\"0.02\" scale=\"true\">-->\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio_noise\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "websocket_mouse_stream_vis": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssiwebsocket\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" event=\"false\" sr=\"50\">\n\t\n\t\t\n\t<output block=\"1\" channel=\"cursor\" frame=\"1\" pin=\"pin_cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "image": [
+        [
+            "<load name=\"ssiimage\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssimouse\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" option=\"camera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"Mouse\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_mfcc": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "valence_arousal": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssivectorfusion\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" flip=\"true\" mask=\"1\" scale=\"false\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button_p\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor_p\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_fftfeat": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "rawinput": [
+        [
+            "<load name=\"ssirawinput\"/>\n"
+        ], 
+        []
+    ], 
+    "touchmouse": [
+        [
+            "<load name=\"ssitouchmouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"TouchMouse\" scale=\"true\" sr=\"20.0\">\n\t\n\t\t\n\t<output channel=\"pressurematrix\" pin=\"press_raw\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_mvgmedian": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "statistics": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"FileReader\" path=\"../test/gauss_m0_sigma_10\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"sig\" size=\"61.0s\" sync=\"0\" watch=\"0\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "vad": [
+        [
+            "<load name=\"ssivad_webrtc\"/>\n"
+        ], 
+        []
+    ], 
+    "camera": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" option=\"camera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor blockInSamples=\"512\" create=\"Audio\" option=\"audio\" scale=\"true\" volume=\"2.0\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "brownnoise_high": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssilibsoxfilter\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"brownnoise.wav\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "my_include": [
+        [], 
+        []
     ], 
     "microsoftkinect": [
         [
@@ -39,6 +868,506 @@
         ], 
         [
             "<sensor create=\"MicrosoftKinect\" nearTrackingMode=\"true\" seatedSkeletonMode=\"false\" showBodyTracking=\"false\" showFaceTracking=\"false\" simpleFaceTracking=\"false\" trackNearestPerson=\"true\">\n\t\n\t\t\n\t<output channel=\"rgb\" pin=\"rgb\"/>\n\t\n\t\t\n\t<output channel=\"depthr\" pin=\"depth\"/>\n\t\n\t\t\n\t<output channel=\"au\" pin=\"au\"/>\n\t\n\t\t\n\t<output channel=\"head\" pin=\"head\"/>\n\t\n\t\t\n\t<output channel=\"skeleton\" pin=\"skel\"/>\n\t\n\t\t\n\t<output channel=\"face\" pin=\"face\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "audio2": [
+        [
+            "<load name=\"graphic\"/>\n", 
+            "<load name=\"audio\"/>\n"
+        ], 
+        [
+            "<sensor blockInSamples=\"512\" create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "theeyeyetribe": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssitheeyetribe\"/>\n"
+        ], 
+        [
+            "<sensor create=\"TheEyeTribe\">\n\t\n\t\t\n\t<output channel=\"gazeraw\" pin=\"gazeraw\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "slider": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"ssi_sensor_Mouse\">\n\t\n\t\t\n\t<provider channel=\"cursor\" pin=\"cursor\">\n\t\t\n\t\t\t\n\t\t<transformer create=\"ssi_filter_Selector\" indices=\"1\"/>\n\t\t\n\t\t\n\t</provider>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "controller": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicontrol\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "socket_udp_event_reader": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        []
+    ], 
+    "camera+audio+mouse": [
+        [], 
+        []
+    ], 
+    "signal_snratio": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_expression": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_mvgnorm": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "brownnoise_low": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssilibsoxfilter\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"brownnoise.wav\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_passfilter": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "ffmpeg": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor create=\"FFMPEGReader\" url=\"dummy.mp4\" wait=\"true\">\n\t\t\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "mlp": [
+        [
+            "<load name=\"ssimlpxml\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimodel\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"2\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "rbj": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssidspfilters\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "my": [
+        [
+            "<load name=\"ioput\"/>\n", 
+            "<load name=\"mouse\"/>\n", 
+            "<load name=\"graphic\"/>\n", 
+            "<load name=\"signal\"/>\n", 
+            "<load name=\"model\"/>\n", 
+            "<load name=\"control\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\" option=\"mouse\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"$(cursor_pin)\" size=\"5000ms\" sync=\"2.5s\" watch=\"2.0s\">\n\t\t\n\t\t\t\n\t\t<transformer create=\"Selector\"/>\n\t\t\n\t\t\n\t</output>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "websocket_mouse_ntuple": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssiwebsocket\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"pin_cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "socket_video_client": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor create=\"SocketReader\" format=\"3\" port=\"9999\" schannels=\"3\" sdepth=\"8\" sheight=\"480\" ssr=\"25.0\" swidth=\"640\">\n\t\t\t\n\t\t\n\t<output channel=\"socket\" pin=\"camera\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "model2": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimodel\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "opennikinect+fubi": [
+        [
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiopennikinect\"/>\n"
+        ], 
+        [
+            "<sensor create=\"OpenNIKinect\" hangout=\"30\" project=\"False\" recognizer_xml=\"SampleRecognizers.xml\">\n\t\n\t\t\n\t<output channel=\"scene\" pin=\"scene\"/>\n\t\n\t\t\n\t<output channel=\"skeleton\" pin=\"skeleton\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "event_to_stream_mouse_btn_example": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssievent\"/>\n", 
+            "<load name=\"ssimouse\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" event=\"True\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"btn\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"EventToStream\" eventValue=\"number_of_events\" sr=\"50\" useWindow=\"True\" window=\"10000\">\n\t\t\t\n\t\t\n\t<output channel=\"event output\" pin=\"btn_to_stream\"/>\n\t\n\t\t\n\t<listen address=\"@\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "avi": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiavi\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" option=\"camera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor blockInSamples=\"512\" create=\"Audio\" option=\"audio\" scale=\"false\" sr=\"44100\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "wiimote": [
+        [
+            "<load name=\".\\ssiwiimote\"/>\n", 
+            "<load name=\".\\ssisignal\"/>\n", 
+            "<load name=\".\\ssigraphic\"/>\n", 
+            "<load name=\".\\ssimodel\"/>\n", 
+            "<load name=\".\\ssiprotractor\"/>\n"
+        ], 
+        [
+            "<sensor create=\"WiiRemote\">\n\t\n\t\t\n\t<output channel=\"acceleration\" pin=\"wiiacc\"/>\n\t\n\t\t\n\t<output channel=\"button\" pin=\"wiibut\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "mouse": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_spectrogram": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "capture": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor channel=\"3\" create=\"Camera\" depth=\"8\" flip=\"true\" fps=\"25.0\" height=\"480\" option=\"camera\" width=\"640\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_mvgavgvar": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "python": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssipython\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\t\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor block=\"0.5\" create=\"PythonSensor\" optsstr=\"sr=1000;dim=2\" script=\"ssi_sensor\" syspath=\"../test\">\n\t\t\n\t\t\n\t<output channel=\"sine\" pin=\"sine\"/>\n\t\n\t\t\n\t<output channel=\"saw\" pin=\"saw\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "bvp_beat_event": [
+        [
+            "<load name=\"ssiframe\"/>\n", 
+            "<load name=\"ssievent\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiehealth\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssibiosig\"/>\n"
+        ], 
+        [
+            "<sensor create=\"FileReader\" loop=\"False\" path=\"..\\..\\..\\..\\..\\hertwig_obermayer\\Stress_Test_Sessions\\30.0-.2-15_15-37-12(Stephan)\\bvp\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"bvp\" sync=\"0\" watch=\"0\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"BVPEventRawListener\" sr=\"9\">\n\t\n\t\t\n\t<output channel=\"interbeat interval\" pin=\"ib_raw\"/>\n\t\n\t\t\n\t<output channel=\"heart rate\" pin=\"hr_raw\"/>\n\t\n\t\t\n\t<output channel=\"amplitude\" pin=\"amp_raw\"/>\n\t\n\t\t\n\t<listen address=\"@bvp_tuple\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"BVPEventStatisticalListener\" sr=\"1\" statisticalFunction=\"1\" window=\"60000\">\n\t\n\t\t\n\t<output channel=\"interbeat interval\" pin=\"ib_sum\"/>\n\t\n\t\t\n\t<output channel=\"heart rate\" pin=\"hr_sum\"/>\n\t\n\t\t\n\t<output channel=\"amplitude\" pin=\"amp_sum\"/>\n\t\n\t\t\n\t<listen address=\"@bvp_tuple\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"BVPEventRMSSDListener\" window=\"10000\">\n\t\n\t\t\n\t<output channel=\"RMSSD\" pin=\"rmssd\"/>\n\t\n\t\t\n\t<listen address=\"@bvp_tuple\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "control_checkbox": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssicontrol\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "emovoice": [
+        [
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiemovoice\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimodel\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\t\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "camera_screen": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiimage\"/>\n"
+        ], 
+        [
+            "<sensor create=\"CameraScreen\" full=\"true\" mouse=\"true\" option=\"camscreen\" region=\"0,200,320,240\" resize=\"true\" resize_height=\"480\" resize_width=\"640\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"camera\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "ffmpeg_stream_server": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssiffmpeg\"/>\n", 
+            "<load name=\"ssiimage\"/>\n"
+        ], 
+        [
+            "<sensor channel=\"3\" create=\"Camera\" depth=\"8\" fps=\"25.0\" height=\"240\" option=\"camera\" width=\"320\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\" size=\"2.0s\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor blockInSamples=\"0.01\" create=\"Audio\" option=\"audio\" scale=\"true\" sr=\"48000\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_mvgcondiv": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "fake_signal": [
+        [
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n"
+        ], 
+        [
+            "<sensor create=\"FakeSignal\" option=\"random\">\n\t\n\t\t\n\t<output channel=\"fake\" pin=\"fake\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_vad": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor blockInSamples=\"512\" create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_mvgminmax": [
+        [
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" sr=\"100.0\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_downsample": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" option=\"cursor\" scale=\"true\" sr=\"200\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "laughter": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiopensmile\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimodel\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"WavReader\" path=\"..\\build\\test\\audio.wav\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "butter": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssidspfilters\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.02\" create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "gsr": [
+        [
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssibiosig\"/>\n"
+        ], 
+        [
+            "<sensor block=\"0.2\" create=\"FileReader\" path=\"gsr\">\n\t\n\t\t\n\t<output channel=\"file\" pin=\"gsr\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "praat": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssipraat\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n", 
+            "<load name=\"ssiioput\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\" sr=\"16000\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_image": [
+        [
+            "<load name=\"ssiimage\"/>\n", 
+            "<load name=\"ssicamera\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssimouse\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Camera\" option=\"camera\">\n\t\n\t\t\n\t<output channel=\"video\" pin=\"video\"/>\n\t\n\t\n</sensor>\n", 
+            "<sensor create=\"Mouse\">\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "signal_intensity": [
+        [
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssiaudio\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Audio\" option=\"audio\" scale=\"true\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "client": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n"
+        ], 
+        [
+            "<sensor create=\"SocketReader\" port=\"9998\" sbyte=\"4\" sdim=\"2\" ssr=\"5.0\" stype=\"9\" type=\"0\">\n\t\t\t\n\t\t\n\t<output channel=\"socket\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "model": [
+        [
+            "<load name=\"ssiioput\"/>\n", 
+            "<load name=\"ssimouse\"/>\n", 
+            "<load name=\"ssigraphic\"/>\n", 
+            "<load name=\"ssisignal\"/>\n", 
+            "<load name=\"ssimodel\"/>\n"
+        ], 
+        [
+            "<sensor create=\"Mouse\" mask=\"1\">\n\t\n\t\t\n\t<output channel=\"button\" pin=\"button\"/>\n\t\n\t\t\n\t<output channel=\"cursor\" pin=\"cursor\"/>\n\t\n\t\n</sensor>\n"
+        ]
+    ], 
+    "audio": [
+        [
+            "<load name=\"microsoftkinect2\"/>\n", 
+            "<load name=\"graphic\"/>\n", 
+            "<load name=\"audio\"/>\n"
+        ], 
+        [
+            "<sensor create=\"MicrosoftKinect2\">\n\t\n\t\t\n\t<output channel=\"audio\" pin=\"audio\"/>\n\t\n\t\n</sensor>\n"
         ]
     ]
 }
