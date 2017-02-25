@@ -70,7 +70,6 @@ function createXMLElem(tagName, options, nestable=true) {
 function makePipe() {
     // Get map
     map = getJsonMap();
-    console.log(map);
     // Get filename
     var fName = document.getElementById("pipename").value; 
     var components = getComponents();
@@ -136,7 +135,19 @@ function makePipe() {
     var visualize = createXMLElem("object", {"create": "Decorator", "icon": "true", "title": "Pipeline"});
     pipe.documentElement.appendChild(visualize);
 
-    console.log(pipe)
+    exportPipe('export.pipeline', 'text/xml', pipe);
+}
+
+function exportPipe(filename, mimeType, pipe) {
+    // A 'hacky' way to download XML
+    pipeAsStr = (new XMLSerializer()).serializeToString(pipe);
+    var elHtml = pipeAsStr;
+    var link = document.createElement('a');
+    mimeType = mimeType || 'text/plain';
+
+    link.setAttribute('download', filename);
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+    link.click(); 
 }
 
 function Get(yourUrl){
@@ -147,7 +158,6 @@ function Get(yourUrl){
 }
 
 function getJsonMap() {
-    $.getJSON("https://raw.githubusercontent.com/avaid96/mudcat/master/map.json"); // figure out how to get rid of this
     return JSON.parse(Get("https://raw.githubusercontent.com/avaid96/mudcat/master/map.json"));
 }
 
