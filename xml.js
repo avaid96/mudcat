@@ -5,15 +5,15 @@ function getComponents() {
     // USING SAMPLE FOR NOW
     // ---------------
     // CREATING SAMPLE
-    var sampleName = "camera";
+    // var sampleName = "camera";
     var sampleKeys = {};
-    sampleKeys["option1"] = 2.0
-    var sampleComponent = [sampleName, sampleKeys];
+    // sampleKeys["option1"] = 2.0
+    // var sampleComponent = [sampleName, sampleKeys];
     var sampleName = "audio";
     var sampleComponent2 = [sampleName, sampleKeys];
     // ---------------
     // Adding component with settings to components array
-    components.push(sampleComponent);
+    // components.push(sampleComponent);
     components.push(sampleComponent2);
 
     // returning the filename and the formed component list where each component is [cName, cKeys]
@@ -128,8 +128,16 @@ function makePipe() {
     var comment = document.createComment("BEGIN VISUALIZATION BLOCK");
     pipe.documentElement.appendChild(comment);
     // Visualization block
-    var visualize = createXMLElem("consumer", {"create": "VideoPainter:plot", "title": "camera"});
-    pipe.documentElement.appendChild(visualize);
+    arrayLength = components.length;
+    for (var i = 0; i < arrayLength; i++) {
+        var currentCompName = (components[i][0]);
+        var currentCompProps = (map[currentCompName]);
+        var currentCompVis = currentCompProps[2];
+        document.createElement('div');
+        d.innerHTML = currentCompVis;
+        currVis = d.firstChild
+        pipe.documentElement.appendChild(currVis);
+    }
 
     // Decorator block
     var visualize = createXMLElem("object", {"create": "Decorator", "icon": "true", "title": "Pipeline"});
@@ -141,12 +149,11 @@ function makePipe() {
 function exportPipe(filename, mimeType, pipe) {
     // A 'hacky' way to download XML
     pipeAsStr = (new XMLSerializer()).serializeToString(pipe);
-    var elHtml = pipeAsStr;
     var link = document.createElement('a');
     mimeType = mimeType || 'text/plain';
 
     link.setAttribute('download', filename);
-    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(pipeAsStr));
     link.click(); 
 }
 

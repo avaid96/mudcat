@@ -28,22 +28,38 @@ def parseXML(file):
     for sens in currentDom.getElementsByTagName('sensor'):
         sensor.append(sens.toprettyxml())
 
-    #TODO @avaid96: Figure out what happens with consumer and decoration
-    
-    return register, sensor
+    #VISUALIZATION - just the first consumer after the visualization comment
+    visualization = []
+    nodes = currentDom.documentElement.childNodes
+    visCommentIdx = -1
+    for i,n in enumerate(nodes):
+        if n.nodeType==n.COMMENT_NODE:
+            if 'visualization' in str(n.data):
+                visCommentIdx=i
+    if visCommentIdx!=-1:
+        for i,n in enumerate(nodes[visCommentIdx:]):
+            xmlnode = nodes[visCommentIdx+i].toprettyxml()
+            if 'consumer' in str(xmlnode):
+                visualization.append(xmlnode)
+                break
+    else:
+        print "error handling not done if no visualization"
+
+    #TODO @avaid96: Figure out what happens with and decoration
+    return register, sensor, visualization
 
 def parseAll(directory):
     files = getAllXMLFileNames(os.getcwd())
     map = {} 
     for file in files:
-        register, sensor = parseXML(file)
+        register, sensor, visualization = parseXML(file)
         fileName = file[:-9]
         fileName = os.path.basename(fileName)
         if fileName.endswith("_read"):
             fileName = fileName[:-5]
         if fileName.endswith("_write"):
             fileName = fileName[:-6]
-        map[fileName] = [register, sensor]
+        map[fileName] = [register, sensor, visualization]
     return map
 
 def main():
